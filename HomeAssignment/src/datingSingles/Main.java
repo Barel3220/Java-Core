@@ -3,9 +3,15 @@ package datingSingles;
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner; // Import the Scanner class to read text files
+import java.util.stream.Collectors;
 
 public class Main {
+	// create Array for all persons
+	private static ArrayList<Person> allPersons = new ArrayList<Person>();
+	private static ArrayList<Matches> mixAndMatchAllPersons = new ArrayList<Matches>();
 
 	public static void main(String[] args) {
 		try {
@@ -15,8 +21,7 @@ public class Main {
 			Scanner fileScanner = new Scanner(peopleFile);
 			// create a null Person for using after
 			Person person = null;
-			// create Array for all persons
-			ArrayList<Person> allPersons = new ArrayList<Person>();
+
 			
 			// while loop for reading all lines
 			while(fileScanner.hasNextLine()) {
@@ -37,22 +42,50 @@ public class Main {
 				allPersons.add(person);
 			}
 			
-			// printing
-			allPersons.forEach(pers -> {
-				System.out.println(pers);
+			// calling the method mix&match which calls scoreMatch 
+			new Main().MixAndMatch();
+			// getting sorted list
+			new Main().SortMatches().forEach(sortedMatch -> {
+				System.out.println(sortedMatch);
 			});
-			
-			
-			
+				
+			// exception in case file not found
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
 	}
-
+	
+	private void MixAndMatch() {
+		// creating pairs for all persons
+		for (int i = 0; i < allPersons.size(); i++) 
+			for (int j = i + 1; j < allPersons.size(); j++)
+				if (allPersons.get(i).getPreferredGender().contains(allPersons.get(j).getGender()))
+					mixAndMatchAllPersons.add(new Matches(allPersons.get(i), allPersons.get(j)));
+		
+		// setting scores for each match
+		ScoreMatches();
+	}
+	
+	private void ScoreMatches() {
+		mixAndMatchAllPersons.forEach(match -> {
+			// zeroing counter for scoring
+			int counter = 0;
+			// checking for each match the preferred points
+			if (match.getFirstPerson().getAge() <= match.getSecondPerson().getPreferredMaxAge() &&
+					match.getSecondPerson().getAge() <= match.getFirstPerson().getPreferredMaxAge()) 
+				match.setScore(++counter);			
+			if (match.getFirstPerson().getStrongQuality().contains(match.getSecondPerson().getPreferredQuality()))
+				match.setScore(++counter);
+			if (match.getFirstPerson().getProfession().contains(match.getSecondPerson().getPreferredProfession()))
+				match.setScore(++counter);
+		});
+	}
+	
+	private List<Matches> SortMatches() {
+		// returning sorted list for matches
+		return mixAndMatchAllPersons.stream()
+				.sorted(Comparator.comparing(Matches::getScore).reversed())
+				.collect(Collectors.toList());
+	}
 }

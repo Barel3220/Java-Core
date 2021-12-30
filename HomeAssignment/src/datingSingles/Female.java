@@ -14,6 +14,14 @@ public class Female extends Person {
 		this.hairColor = hairColor;
 	}
 
+	public String getHairColor() {
+		return hairColor;
+	}
+
+	public void setHairColor(String hairColor) {
+		this.hairColor = hairColor;
+	}
+
 	// female toString
 	@Override
 	public String toString() {

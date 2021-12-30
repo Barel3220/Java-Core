@@ -14,6 +14,14 @@ public class Male extends Person {
 		this.height = height;
 	}
 	
+	public String getHeight() {
+		return height;
+	}
+
+	public void setHeight(String height) {
+		this.height = height;
+	}
+
 	// male toString
 	@Override
 	public String toString() {
