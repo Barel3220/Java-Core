@@ -1,0 +1,6 @@
+Barel Hatuka, Male, 29, Software Engineer, Tall, Female, 32, Engineer, Smart, 183
+Daniel Tzadok, Male, 31, Mechanical Engineer, Short, Female, 31, Engineer, Short, 165
+Adir Moshe, Male, 26, Security Specialist, Smart, Female, 30, Engineer, Tall, 178
+Ligal Moshe, Female, 30, Bio-Medical Engineer, Smart, Male, 31, Engineer, Tall, Brunette
+Meital Shalom, Female, 30, Secretary, Short, Male, 36, Engineer, Short, Blonde
+Lily Fally, Female, 23, Accountant, Tall, Male, 29, Engineer, Smart, Blue and Brown
