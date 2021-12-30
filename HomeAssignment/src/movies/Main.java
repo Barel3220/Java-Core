@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 public class Main {
 
-	// creating connection instance;
+	// creating connection instance
 	private static HttpURLConnection connection;
 	// creating array list for comparing rating at the end
 	private static ArrayList<Movie> allMovies = new ArrayList<Movie>();
