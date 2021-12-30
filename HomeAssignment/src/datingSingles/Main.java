@@ -16,7 +16,7 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			// read the data of people
-			File peopleFile = new File("C:\\Users\\barel\\Desktop\\people.txt");
+			File peopleFile = new File(System.getProperty("user.dir") + "/src/datingSingles/people.txt");
 			// create a scanner using file source
 			Scanner fileScanner = new Scanner(peopleFile);
 			// create a null Person for using after
@@ -48,6 +48,8 @@ public class Main {
 			new Main().SortMatches().forEach(sortedMatch -> {
 				System.out.println(sortedMatch);
 			});
+			
+			fileScanner.close();
 				
 			// exception in case file not found
 		} catch (FileNotFoundException e) {
