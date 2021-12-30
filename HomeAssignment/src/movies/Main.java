@@ -1,4 +1,4 @@
-package DatingSingles;
+package movies;
 
 public class Main {
 
